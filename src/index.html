@@ -16,6 +16,54 @@
   </head>
   <body>
     <app-root></app-root>
-    <script src="./assets/js/main.js"></script>
   </body>
+  <!-- !js -->
+  <script>
+    /*===== MENU SHOW Y HIDDEN =====*/
+    const navMenu = document.getElementById("nav-menu");
+    toggleMenu = document.getElementById("nav-toggle");
+    closeMennu = document.getElementById("nav-close");
+
+    // SHOW
+    toggleMenu.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+
+    // HIDDEN
+    closeMennu.addEventListener("click", () => {
+      navMenu.classList.remove("show");
+    });
+    /*===== ACTIVE AND REMOVE MENU =====*/
+
+    const navLink = document.querySelectorAll(".nav__link");
+
+    function linkAction() {
+      navMenu.classList.remove("show");
+    }
+    navLink.forEach((n) => n.addEventListener("click", linkAction));
+
+    /*===== SCROLL SECTIONS ACTIVE LINK =====*/
+    const sections = document.querySelectorAll("section[id]");
+    window.addEventListener("scroll", scrollActive);
+
+    function scrollActive() {
+      const scrollY = window.pageYOffset;
+
+      sections.forEach((current) => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 50;
+        let sectionsId = current.getAttribute("id");
+
+        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+          document
+            .querySelector(".nav__menu a[href*=" + sectionsId + " ]")
+            .classList.add("active");
+        } else {
+          document
+            .querySelector(".nav__menu a[href*=" + sectionsId + " ]")
+            .classList.remove("active");
+        }
+      });
+    }
+  </script>
 </html>

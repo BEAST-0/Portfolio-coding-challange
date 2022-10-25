@@ -258,7 +258,7 @@ img {
 }
 
 .home__social-link:hover {
-  background-color: var(--first-color-dark);
+  background-color: var(--first-color-lighten);
 }
 .home__button {
   width: 100%;
